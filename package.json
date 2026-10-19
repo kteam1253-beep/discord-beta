@@ -1,0 +1,35 @@
+{
+  "name": "chatter-discord-clone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discord-inspired community chat ready for Railway and MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check app.js && node --check desktop/main.js && node --check desktop/preload.js",
+    "desktop": "electron desktop/main.js",
+    "desktop:build": "electron-builder --win nsis"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.4",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "electron": "^44.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.devcorestudio.chatter",
+    "productName": "Chatter",
+    "directories": { "output": "dist-desktop" },
+    "files": ["desktop/**/*", "package.json"],
+    "extraMetadata": { "main": "desktop/main.js" },
+    "win": { "target": "nsis", "artifactName": "Chatter-Setup.${ext}" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "createStartMenuShortcut": true }
+  }
+}
